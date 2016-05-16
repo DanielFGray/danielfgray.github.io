@@ -3,18 +3,21 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Archive | DanielFGray</title>
+    <title>Backporting packages in Debian | DanielFGray</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="DanielFGray">
-<meta property="og:url" content="http://0.0.0.0/archives/index.html">
+        <meta name="keywords" content="debian" />
+    
+    <meta name="description" content="Are you anxious for a new version of a particular package, and don’t want to wait for someone else to submit it to backports?After a few hours of reading docs and testing this out myself I feel like I">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Backporting packages in Debian">
+<meta property="og:url" content="http://0.0.0.0/linux/debian-backporting/index.html">
 <meta property="og:site_name" content="DanielFGray">
-<meta property="og:description">
+<meta property="og:description" content="Are you anxious for a new version of a particular package, and don’t want to wait for someone else to submit it to backports?After a few hours of reading docs and testing this out myself I feel like I">
+<meta property="og:updated_time" content="2016-05-16T02:39:56.683Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DanielFGray">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Backporting packages in Debian">
+<meta name="twitter:description" content="Are you anxious for a new version of a particular package, and don’t want to wait for someone else to submit it to backports?After a few hours of reading docs and testing this out myself I feel like I">
     
 
     
@@ -116,162 +119,124 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <i class="icon fa fa-archive"></i>Archive
+    <a class="page-title-link" href="/categories/linux/">linux</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            
-
-    
-    
+                            <article id="post-debian-backporting" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2015" class="archive-year"><i class="icon fa fa-calendar-o"></i>2015</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/drums/">drums</a>
-            </p>
-            <p class="date"><time datetime="2015-12-14T06:00:00.000Z" itemprop="datePublished">2015-12-14</time></p>
-        </div>
-        
+            <header class="article-header">
+                
     
         <h1 class="article-title" itemprop="name">
-        <a href="/drums/rudimental-permutations/">On permutations of rudiments</a>
+        Backporting packages in Debian
         </h1>
     
 
-        <p class="article-excerpt">
-            IntroductionThis post is still a work in progress, so bare with me please. If you spot any errors or have something you want to add, feel free to leave a comment below.
-Displacing AccentsLet’s begin w
-        </p>
+            </header>
+        
+        <div class="article-subtitle">
+            <a href="/linux/debian-backporting/" class="article-date">
+    <time datetime="2013-10-22T05:00:00.000Z" itemprop="datePublished">2013-10-22</time>
+</a>
+            
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/debian/">debian</a></li></ul>
+
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>Are you anxious for a new version of a particular package, and don’t want to wait for someone else to submit it to backports?<br>After a few hours of reading docs and testing this out myself I feel like I’ve gotten a good grasp on how to do this yourself.</p>
+<p>First, you want to add sources to your repos if you don’t have them. You want at least one or more of the following lines in <code>/etc/apt/sources.list</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deb-src http://http.debian.net/debian stable main</span><br><span class="line">deb-src http://http.debian.net/debian testing main</span><br><span class="line">deb-src http://http.debian.net/debian unstable main</span><br><span class="line">deb-src http://http.debian.net/debian experimental main</span><br></pre></td></tr></table></figure>
+<p>After adding those, make sure to <code>apt-get update</code><br>Then, if you don’t have a build directory, make one and cd, <code>mkdir ~/build &amp;&amp; cd ~/build</code></p>
+<p>Now here’s the interesting part: apt can download the source for the program you want. You’ll want to search for the available versions using <code>apt-cache showsrc &lt;package&gt; | less</code> and take note of the version number.</p>
+<p>Before you begin you’ll want to make sure you have all the build dependencies installed, so be sure to run <code>apt-get build-dep &lt;package&gt;</code>. After you’ve done that, run <code>apt-get source -b &lt;package&gt;=&lt;version&gt;</code>. This will download the source code  and whatever patches the Debian maintainers have added and begin compiling.</p>
+<p>It is most definitely possible to <code>./configure</code> the package manually, but it’s a bit tricky. To not automatically start compiling, omit the <code>-b</code> flag from <code>apt-get source</code>, and after the source is finished downloading, <code>cd</code> to the source and edit <code>debian/rules</code>, and then run <code>dpkg-buildpackage</code>.</p>
+<p>Once it’s done it will create a Debian package, install it with <code>dpkg -i &lt;package&gt;.deb</code></p>
+<p>And there you have it!</p>
+<p>tl;dr</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apt-cache showsrc &lt;package&gt;</span><br><span class="line">sudo apt-get build-dep &lt;package&gt;</span><br><span class="line">apt-get <span class="built_in">source</span> -b &lt;package&gt;=&lt;version&gt;</span><br><span class="line">sudo dpkg -i &lt;package&gt;.deb</span><br></pre></td></tr></table></figure>
+<p>It should be noted that this is not fool-proof, some packages will fail to build for various reasons, most often the build dependencies might require newer versions than are available from the repos, in which case you have to start down another path of backporting the dependencies, which can sometimes lead to backporting dependencies of dependencies..</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://0.0.0.0/linux/debian-backporting/" data-id="cio9euqn70000t0o14v6vu8rl" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
-    
 
+    <section id="comments">
     
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
         
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/linux/">linux</a>
-            </p>
-            <p class="date"><time datetime="2015-08-02T05:00:00.000Z" itemprop="datePublished">2015-08-02</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/linux/vimrc-guide/">Vim beginner&#39;s customization guide</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            This article is for those who’ve been using Vim for a little while and have started to grasp modal editing and the powers of Vim, and now want to start customizing it. If you’re completely new to Vim,
-        </p>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-</article>
-    
-        </div>
-    
 
     
-    
-        
-            </div></section>
-        
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2014" class="archive-year"><i class="icon fa fa-calendar-o"></i>2014</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/linux/">linux</a>
-            </p>
-            <p class="date"><time datetime="2014-11-02T05:00:00.000Z" itemprop="datePublished">2014-11-02</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/linux/fzmp/">Fuzzy searching for MPD in Bash</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            if this is tl;dr you can just read the script here
-I recently came across fzf, which is a fuzzy search filter. By default fzf will fuzzy search recursively through files in the current directory, but 
-        </p>
-    </div>
-</article>
-    
-
-    
-    
-        
-            </div></section>
-        
-        
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2013" class="archive-year"><i class="icon fa fa-calendar-o"></i>2013</a>
-            </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <div class="article-meta">
-            <p class="category">
-            <a class="article-category-link" href="/categories/linux/">linux</a>
-            </p>
-            <p class="date"><time datetime="2013-10-22T05:00:00.000Z" itemprop="datePublished">2013-10-22</time></p>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/linux/debian-backporting/">Backporting packages in Debian</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            Are you anxious for a new version of a particular package, and don’t want to wait for someone else to submit it to backports?After a few hours of reading docs and testing this out myself I feel like I
-        </p>
-    </div>
-</article>
-    
-
-
-    </div></section>
-
-
+    </section>
 
                         </div>
                     </section>
@@ -307,6 +272,23 @@ I recently came across fzf, which is a fuzzy search filter. By default fzf will 
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/linux/fzmp/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Fuzzy searching for MPD in Bash
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -394,11 +376,13 @@ I recently came across fzf, which is a fuzzy search filter. By default fzf will 
     var disqus_shortname = 'danielfgraygithubio';
     
     
+    var disqus_url = 'http://0.0.0.0/linux/debian-backporting/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
