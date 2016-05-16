@@ -586,7 +586,7 @@ code {
   padding: 3px 0;
 }
 #sidebar .sidebar-top .social-links {
-  float: right;
+  float: left;
   position: relative;
   padding-top: 2px;
 }
@@ -1545,7 +1545,7 @@ a.article-title:hover {
 }
 #footer {
   background: #33363b;
-  margin-top: 60px;
+  margin-top: 0;
   color: #aaa;
   line-height: 1.6em;
 }
@@ -1557,7 +1557,7 @@ a.article-title:hover {
   color: #fff;
 }
 #footer .credit {
-  padding: 30px;
+  padding: 15px;
 }
 #footer #back-to-top {
   background: #eaeaea;
@@ -1928,10 +1928,6 @@ i.icon:before {
   }
   .main-body-inner #sidebar.expend .sidebar-top {
     display: block;
-  }
-  .main-body-inner #sidebar.expend .sidebar-top .social-links .social-tooltip:after,
-  .main-body-inner #sidebar.expend .sidebar-top .social-links .social-tooltip:before {
-    display: none;
   }
   #main .main-body-header,
   #main .archive-year-wrap {
