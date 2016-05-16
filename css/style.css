@@ -227,13 +227,13 @@ body {
 }
 code {
   margin: 0 2px;
-  color: #e96900;
+  color: #eee;
   padding: 3px 5px;
   font-size: 0.8em;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
-  background-color: #f8f8f8;
+  background-color: #444;
 }
 .container {
   position: relative;
