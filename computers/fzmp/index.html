@@ -16,7 +16,7 @@ Realizing">
 <meta property="og:site_name" content="DanielFGray">
 <meta property="og:description" content="I recently came across fzf, which is an interactive line filter. By default fzf will fuzzy search recursively through file names in the current directory, but it also filters through stdin.
 Realizing">
-<meta property="og:updated_time" content="2016-06-04T21:24:55.856Z">
+<meta property="og:updated_time" content="2016-06-04T21:27:49.913Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fuzzy searching for MPD in Bash">
 <meta name="twitter:description" content="I recently came across fzf, which is an interactive line filter. By default fzf will fuzzy search recursively through file names in the current directory, but it also filters through stdin.
@@ -175,7 +175,7 @@ Realizing">
 <p>So, putting it all together I came up with this:</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mapfile</span> -t songs &lt; &lt;(mpc search <span class="_">-f</span> <span class="string">'[%artist% - [%album% - ][%track% - ][%title%]]|%file%'</span> filename <span class="string">''</span> | fzf -m)</span><br><span class="line">(( <span class="variable">$&#123;#songs[@]&#125;</span> &gt; 0 )) || <span class="built_in">exit</span></span><br><span class="line"><span class="built_in">printf</span> <span class="string">'%s\n'</span> <span class="string">"<span class="variable">$&#123;songs[@]&#125;</span>"</span> | mpc -q add</span><br><span class="line">index=$(mpc playlist | wc <span class="_">-l</span>)</span><br><span class="line">(( <span class="variable">$&#123;#songs[@]&#125;</span> &gt; 1 )) &amp;&amp; index=$(( <span class="variable">$index</span> - <span class="variable">$&#123;#songs[@]&#125;</span> + 1))</span><br><span class="line">mpc -q play <span class="string">"<span class="variable">$index</span>"</span></span><br></pre></td></tr></table></figure>
 <p>I replaced <code>listall</code> with <code>search</code> since that’s considered the ‘best’ way, and added some formatting to the output so it prints tag info rather than just the filename.</p>
-<p>The <a href="https://github.com/DanielFgray/dotfiles/blob/master/local/bin/fzmp" target="_blank" rel="external">full script</a> I wrote is a lot more involved and adds filter by artist then by album, as well as filtering the playlist, but this was the core functionality I came up with.</p>
+<p>The <a href="https://github.com/DanielFGray/fzf-scripts/blob/master/fzmp" target="_blank" rel="external">full script</a> I wrote is a lot more involved and adds filter by artist then by album, as well as filtering the playlist, but this was the core functionality I came up with.</p>
 <p>I hope this was as educational to you as it was fun for me to make!</p>
 
         </div>
@@ -184,7 +184,7 @@ Realizing">
 
 
 
-    <a data-url="http://danielfgray.github.io/computers/fzmp/" data-id="cip01ntm20005tqo1rojksw68" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://danielfgray.github.io/computers/fzmp/" data-id="cip1o971z0005j3o1d1vwbgsp" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
