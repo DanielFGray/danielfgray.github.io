@@ -16,7 +16,7 @@ Realizing">
 <meta property="og:site_name" content="DanielFGray">
 <meta property="og:description" content="I recently came across fzf, which is an interactive line filter. By default fzf will fuzzy search recursively through file names in the current directory, but it also filters through stdin.
 Realizing">
-<meta property="og:updated_time" content="2016-06-04T21:27:49.913Z">
+<meta property="og:updated_time" content="2016-06-04T21:32:24.376Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fuzzy searching for MPD in Bash">
 <meta name="twitter:description" content="I recently came across fzf, which is an interactive line filter. By default fzf will fuzzy search recursively through file names in the current directory, but it also filters through stdin.
@@ -168,7 +168,7 @@ Realizing">
 <p>So <code>mpc listall | fzf | mpc add</code> will list all available files in the mpd database, fuzzy filter through them, then add to the bottom of the playlist. Unfortunately, that still doesn’t actually play the added song, and <code>mpc play</code> will only play whatever song is currently selected in the queue, rather than the new song. In the end I found that <code>mpc play</code> accepts an integer as an index from the playlist. So, if <code>mpc add</code> puts them at the bottom, I need to know how many songs are in the playlist, which I can achieve with <code>mpc playlist | wc -l</code> (<code>wc</code> is wordcount, the <code>-l</code> switch counts lines). At this point my code is better suited to a script rather than a one-liner like:</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mpc listall | fzf | mpc add &amp;&amp; mpc play $(mpc playlist | wc <span class="_">-l</span>)</span><br></pre></td></tr></table></figure>
 <p>Which has some weird quirks if you don’t actually add a song. And what if I want to add multiple songs? <code>fzf</code> has the <code>-m</code> switch to select multiple lines, and <code>mpc add</code> happily adds as many songs as you give it.</p>
-<p>After talking to #bash on freenode they pointed out we’d be better off using an array for multiple files, and <code>mapfile</code> is perfect for this. The biggest benefit to using an array here is that I have built-in functionality for counting the elements, rather than repeatedly calling <code>wc -l</code>.</p>
+<p>After talking to #bash on freenode they pointed out I would be better off using an array for multiple files, and <code>mapfile</code> is perfect for this. The biggest benefit to using an array here is that I have built-in functionality for counting the elements, rather than repeatedly calling <code>wc -l</code>.</p>
 <p><code>mapfile -t songs &lt; &lt;(mpc listall | fzf -m)</code> will create a variable called <code>$songs</code> as an array with all the lines as individual elements. We’re also using process substitution here because <a href="http://wiki.bash-hackers.org/commands/builtin/mapfile" target="_blank" rel="external">mapfile</a> expects stdin, but the input is a command, so I use the <code>&lt;()</code> penguin-looking syntax to trick mapfile into thinking the command is really a file . Bash’s quirky <a href="http://wiki.bash-hackers.org/syntax/arrays" target="_blank" rel="external">array syntax</a> gives us <code>${songs[@]}</code> as a reference to all items in the array, and <code>$(#songs[@])</code> to count the amount of items in the <code>$songs</code> array. And with all of this information I have all the pieces to make a fuzzy music finder.</p>
 <p>Using the array, I want to pass each element as a string separated by a newline. This can be done with a little <code>printf</code> magic: <code>printf &#39;%s\n&#39; &quot;${songs[@]}&quot;</code> and that is easily piped into <code>mpc add</code>.</p>
 <p>If I assign a variable to the length of the playlist (which I got with <code>mpc playlist | wc -l</code>) I can tell <code>mpc play</code> to play the last song in the playlist. But if I select multiple songs, I want it to start playing the first of them, so I need a little bit of simple math to figure out how many songs back to start from the bottom. So if the array is longer than one item, I want to reassign the index variable to the length of the playlist, minus however many items I added from the <code>$songs</code> array, and add one (because without adding one I would just have the last item in the playlist before I added anything).</p>
@@ -184,7 +184,7 @@ Realizing">
 
 
 
-    <a data-url="http://danielfgray.github.io/computers/fzmp/" data-id="cip1o971z0005j3o1d1vwbgsp" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://danielfgray.github.io/computers/fzmp/" data-id="cip1oejqx00056qo1j8ximwt4" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
