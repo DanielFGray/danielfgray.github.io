@@ -161,7 +161,7 @@
         <div class="article-entry" itemprop="articleBody">
             <p>Are you anxious for a new version of a particular package, and don’t want to wait for someone else to submit it to backports?<br>After a few hours of reading docs and testing this out myself I feel like I’ve gotten a good grasp on how to do this yourself.</p>
 <p>First, you want to add sources to your repos if you don’t have them. You want at least one or more of the following lines in <code>/etc/apt/sources.list</code>:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deb-src http://http.debian.net/debian stable main</span><br><span class="line">deb-src http://http.debian.net/debian testing main</span><br><span class="line">deb-src http://http.debian.net/debian unstable main</span><br><span class="line">deb-src http://http.debian.net/debian experimental main</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">deb-src http://http.debian.net/debian stable main</span><br><span class="line">deb-src http://http.debian.net/debian testing main</span><br><span class="line">deb-src http://http.debian.net/debian unstable main</span><br><span class="line">deb-src http://http.debian.net/debian experimental main</span><br></pre></td></tr></table></figure>
 <p>After adding those, make sure to <code>apt-get update</code><br>Then, if you don’t have a build directory, make one and cd, <code>mkdir ~/build &amp;&amp; cd ~/build</code></p>
 <p>Now here’s the interesting part: apt can download the source for the program you want. You’ll want to search for the available versions using <code>apt-cache showsrc &lt;package&gt; | less</code> and take note of the version number.</p>
 <p>Before you begin you’ll want to make sure you have all the build dependencies installed, so be sure to run <code>apt-get build-dep &lt;package&gt;</code>. After you’ve done that, run <code>apt-get source -b &lt;package&gt;=&lt;version&gt;</code>. This will download the source code  and whatever patches the Debian maintainers have added and begin compiling.</p>
@@ -169,7 +169,7 @@
 <p>Once it’s done it will create a Debian package, install it with <code>dpkg -i &lt;package&gt;.deb</code></p>
 <p>And there you have it!</p>
 <p>tl;dr</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">apt-cache showsrc &lt;package&gt;</span><br><span class="line">sudo apt-get build-dep &lt;package&gt;</span><br><span class="line">apt-get <span class="built_in">source</span> -b &lt;package&gt;=&lt;version&gt;</span><br><span class="line">sudo dpkg -i &lt;package&gt;.deb</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-cache showsrc &lt;package&gt;</span><br><span class="line">sudo apt-get build-dep &lt;package&gt;</span><br><span class="line">apt-get <span class="built_in">source</span> -b &lt;package&gt;=&lt;version&gt;</span><br><span class="line">sudo dpkg -i &lt;package&gt;.deb</span><br></pre></td></tr></table></figure>
 <p>It should be noted that this is not fool-proof, some packages will fail to build for various reasons, most often the build dependencies might require newer versions than are available from the repos, in which case you have to start down another path of backporting the dependencies, which can sometimes lead to backporting dependencies of dependencies..</p>
 
         </div>
@@ -178,7 +178,7 @@
 
 
 
-    <a data-url="http://danielfgray.github.io/computers/debian-backporting/" data-id="ciopclarc00045eo16u2s74ok" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://danielfgray.github.io/computers/debian-backporting/" data-id="cip01ntlw0004tqo1ace0qiv6" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
