@@ -10,25 +10,22 @@
     });
 
     // Caption
-    $('.article-entry').each(function (i) {
-        $(this).find('img').each(function () {
-            if ($(this).parent().hasClass('fancybox')) {
-                return;
-            }
-            var alt = this.alt;
-            if (alt) {
-                $(this).after('<span class="caption">' + alt + '</span>');
+    $('.article-entry').each(function(i) {
+        $(this).find('img').each(function() {
+            if (this.alt) {
+                $(this).after('<span class="caption">' + this.alt + '</span>');
             }
 
-            $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+            $(this).wrap('<a href="' + this.src + '" title="' + this.alt + '" class="gallery-item"></a>');
         });
 
-        $(this).find('.fancybox').each(function(){
-            $(this).attr('rel', 'article' + i);
-        });
     });
-    if ($.fancybox) {
-        $('.fancybox').fancybox();
+    if (typeof lightGallery != 'undefined') {
+        var options = {
+            selector: '.gallery-item',
+        };
+        lightGallery($('.article-entry')[0], options);
+        lightGallery($('.article-gallery')[0], options);
     }
 
     // Sidebar expend
@@ -123,4 +120,19 @@
         }
     });
 
+    $('.article-entry h1, .article-entry h2, .article-entry h3, .article-entry h4, .article-entry h5, .article-entry h5').each(function(i) {
+        var header      = $(this),
+            headerID    = header.attr('id'),
+            anchorClass = 'header-link',
+            anchorIcon  = '<i class="fa fa-link" aria-hidden="true"></i>';
+
+        if (headerID) {
+            header.append($('<a />')
+                .addClass(anchorClass)
+                .attr({ 'href': '#' + headerID, 'aria-hidden': 'true' })
+                .html(anchorIcon));
+        }
+
+        return this;
+    });
 })(jQuery);

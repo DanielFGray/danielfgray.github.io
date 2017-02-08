@@ -6,17 +6,17 @@
     <title>Fuzzy searching for MPD in Bash | DanielFGray</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="linux,bash,fzf,mpd" />
+        <meta name="keywords" content="linux,programming,bash,mpd,fzf" />
     
     <meta name="description" content="I recently came across fzf, which is an interactive line filter. By default fzf will fuzzy search recursively through file names in the current directory, but it also filters through stdin.
 Realizing">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Fuzzy searching for MPD in Bash">
-<meta property="og:url" content="http://danielfgray.github.io/computers/fzmp/index.html">
+<meta property="og:url" content="http://danielfgray.gitlab.io/computers/fzmp/index.html">
 <meta property="og:site_name" content="DanielFGray">
 <meta property="og:description" content="I recently came across fzf, which is an interactive line filter. By default fzf will fuzzy search recursively through file names in the current directory, but it also filters through stdin.
 Realizing">
-<meta property="og:updated_time" content="2016-06-04T21:32:24.376Z">
+<meta property="og:updated_time" content="2017-02-05T13:25:53.867Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fuzzy searching for MPD in Bash">
 <meta name="twitter:description" content="I recently came across fzf, which is an interactive line filter. By default fzf will fuzzy search recursively through file names in the current directory, but it also filters through stdin.
@@ -27,32 +27,29 @@ Realizing">
 
     
 
-    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/vendor/titillium-web/styles.css">
-    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
 
     <link rel="stylesheet" href="/css/style.css">
 
-    <script src="/vendor/jquery/2.0.3/jquery.min.js"></script>
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
     
     
-        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
     
-    
-        <link rel="stylesheet" href="/vendor/scrollLoading/style.css">
-    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-77929154-1', 'auto');
+ga('send', 'pageview');
+
+</script>
     
     
 
-
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-77929154-1', 'auto');
-      ga('send', 'pageview');
-    </script>
 </head>
 
 <body>
@@ -76,7 +73,11 @@ Realizing">
                                     <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
-                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/computers/">computers</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/music/">music</a></li></ul>
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/projects">Projects</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/Computers/">Computers</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/computers/">computers</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/music/">music</a></li></ul>
                                     
                         </ul>
                         <nav id="sub-nav">
@@ -149,28 +150,32 @@ Realizing">
 
             </header>
         
-        <div class="article-subtitle">
-            <a href="/computers/fzmp/" class="article-date">
+        
+            <div class="article-subtitle">
+                <a href="/computers/fzmp/" class="article-date">
     <time datetime="2014-11-02T05:00:00.000Z" itemprop="datePublished">2014-11-02</time>
 </a>
-            
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fzf/">fzf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mpd/">mpd</a></li></ul>
+                
+    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/bash/">bash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/fzf/">fzf</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mpd/">mpd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/programming/">programming</a></li></ul>
 
-        </div>
+            </div>
+        
+        
         <div class="article-entry" itemprop="articleBody">
             <p>I recently came across <a href="https://github.com/junegunn/fzf" target="_blank" rel="external">fzf</a>, which is an interactive line filter. By default <code>fzf</code> will fuzzy search recursively through file names in the current directory, but it also filters through stdin.</p>
 <p>Realizing it was a generic filter, and not just for files, I wondered what else I could fuzzy search through, and, being a musician, I felt that filtering through my music library would be handy.</p>
 <p><code>mpc</code> is a CLI interface to mpd, and after reading through the <a href="http://man.cx/mpc(1" target="_blank" rel="external">man page</a>), I find that <code>mpc listall</code> will display a list of every song in the mpd database (although later on I learned it’s actually bad practice). So immediately I ran <code>mpc listall | fzf</code>, which worked as I expected. Only, <code>fzf</code> just prints the selection to stdout, it doesn’t have any side-effects besides printing to stdout. So after reading the man page some more and tinkering around, I learn that <code>mpc add</code> will take files from stdin and add them to the bottom of the playlist.</p>
 <p>So <code>mpc listall | fzf | mpc add</code> will list all available files in the mpd database, fuzzy filter through them, then add to the bottom of the playlist. Unfortunately, that still doesn’t actually play the added song, and <code>mpc play</code> will only play whatever song is currently selected in the queue, rather than the new song. In the end I found that <code>mpc play</code> accepts an integer as an index from the playlist. So, if <code>mpc add</code> puts them at the bottom, I need to know how many songs are in the playlist, which I can achieve with <code>mpc playlist | wc -l</code> (<code>wc</code> is wordcount, the <code>-l</code> switch counts lines). At this point my code is better suited to a script rather than a one-liner like:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mpc listall | fzf | mpc add &amp;&amp; mpc play $(mpc playlist | wc <span class="_">-l</span>)</span><br></pre></td></tr></table></figure>
-<p>Which has some weird quirks if you don’t actually add a song. And what if I want to add multiple songs? <code>fzf</code> has the <code>-m</code> switch to select multiple lines, and <code>mpc add</code> happily adds as many songs as you give it.</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">mpc listall | fzf | mpc add &amp;&amp; mpc play $(mpc playlist | wc <span class="_">-l</span>)</div></pre></td></tr></table></figure>
+<p>Which has some weird quirks if I don’t actually add a song. And what if I want to add multiple songs? <code>fzf</code> has the <code>-m</code> switch to select multiple lines, and <code>mpc add</code> happily adds as many songs as it’s given.</p>
 <p>After talking to #bash on freenode they pointed out I would be better off using an array for multiple files, and <code>mapfile</code> is perfect for this. The biggest benefit to using an array here is that I have built-in functionality for counting the elements, rather than repeatedly calling <code>wc -l</code>.</p>
-<p><code>mapfile -t songs &lt; &lt;(mpc listall | fzf -m)</code> will create a variable called <code>$songs</code> as an array with all the lines as individual elements. We’re also using process substitution here because <a href="http://wiki.bash-hackers.org/commands/builtin/mapfile" target="_blank" rel="external">mapfile</a> expects stdin, but the input is a command, so I use the <code>&lt;()</code> penguin-looking syntax to trick mapfile into thinking the command is really a file . Bash’s quirky <a href="http://wiki.bash-hackers.org/syntax/arrays" target="_blank" rel="external">array syntax</a> gives us <code>${songs[@]}</code> as a reference to all items in the array, and <code>$(#songs[@])</code> to count the amount of items in the <code>$songs</code> array. And with all of this information I have all the pieces to make a fuzzy music finder.</p>
-<p>Using the array, I want to pass each element as a string separated by a newline. This can be done with a little <code>printf</code> magic: <code>printf &#39;%s\n&#39; &quot;${songs[@]}&quot;</code> and that is easily piped into <code>mpc add</code>.</p>
-<p>If I assign a variable to the length of the playlist (which I got with <code>mpc playlist | wc -l</code>) I can tell <code>mpc play</code> to play the last song in the playlist. But if I select multiple songs, I want it to start playing the first of them, so I need a little bit of simple math to figure out how many songs back to start from the bottom. So if the array is longer than one item, I want to reassign the index variable to the length of the playlist, minus however many items I added from the <code>$songs</code> array, and add one (because without adding one I would just have the last item in the playlist before I added anything).</p>
+<p><code>mapfile -t songs &lt; &lt;(mpc listall | fzf -m)</code> will create a variable called <code>songs</code> as an array with all the lines as individual elements. I’m also using process substitution here because <a href="http://wiki.bash-hackers.org/commands/builtin/mapfile" target="_blank" rel="external">mapfile</a> expects stdin, but the input is a command, so I use the <code>&lt;()</code> penguin-looking syntax to trick mapfile into thinking the command is really a file . Bash’s quirky <a href="http://wiki.bash-hackers.org/syntax/arrays" target="_blank" rel="external">array syntax</a> provides <code>${songs[@]}</code> as a reference to all items in the array, and <code>$(#songs[@])</code> to count the amount of items in the <code>$songs</code> array. With this information I have all the pieces to make a fuzzy music finder.</p>
+<p>Using the array, I want to pass each element as a string separated by a newline to <code>mpc add</code>. This can be done with a little <code>printf</code> magic: <code>printf &#39;%s\n&#39; &quot;${songs[@]}&quot;</code>. If I assign a variable to the length of the playlist (which I got with <code>mpc playlist | wc -l</code>) I can tell <code>mpc play</code> to play the last song in the playlist. But if I select multiple songs, I want it to start playing the first of them, so I need a little bit of simple math to figure out how many songs back to start from the bottom. So if the array is longer than one item, I want to reassign the index variable to the length of the playlist, minus however many items I added from the <code>$songs</code> array, and add one (because without adding one I would just have the last item in the playlist before I added anything).</p>
 <p>So, putting it all together I came up with this:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mapfile</span> -t songs &lt; &lt;(mpc search <span class="_">-f</span> <span class="string">'[%artist% - [%album% - ][%track% - ][%title%]]|%file%'</span> filename <span class="string">''</span> | fzf -m)</span><br><span class="line">(( <span class="variable">$&#123;#songs[@]&#125;</span> &gt; 0 )) || <span class="built_in">exit</span></span><br><span class="line"><span class="built_in">printf</span> <span class="string">'%s\n'</span> <span class="string">"<span class="variable">$&#123;songs[@]&#125;</span>"</span> | mpc -q add</span><br><span class="line">index=$(mpc playlist | wc <span class="_">-l</span>)</span><br><span class="line">(( <span class="variable">$&#123;#songs[@]&#125;</span> &gt; 1 )) &amp;&amp; index=$(( <span class="variable">$index</span> - <span class="variable">$&#123;#songs[@]&#125;</span> + 1))</span><br><span class="line">mpc -q play <span class="string">"<span class="variable">$index</span>"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="built_in">mapfile</span> -t songs &lt; &lt;(mpc search <span class="_">-f</span> <span class="string">'[%artist% - [%album% - ][%track% - ][%title%]]|%file%'</span> filename <span class="string">''</span> | fzf -m)</div><div class="line">(( <span class="variable">$&#123;#songs[@]&#125;</span> &gt; 0 )) || <span class="built_in">exit</span></div><div class="line"><span class="built_in">printf</span> <span class="string">'%s\n'</span> <span class="string">"<span class="variable">$&#123;songs[@]&#125;</span>"</span> | mpc -q add</div><div class="line">index=$(mpc playlist | wc <span class="_">-l</span>)</div><div class="line">(( <span class="variable">$&#123;#songs[@]&#125;</span> &gt; 1 )) &amp;&amp; index=$(( index - <span class="variable">$&#123;#songs[@]&#125;</span> + 1))</div><div class="line">mpc -q play <span class="string">"<span class="variable">$index</span>"</span></div></pre></td></tr></table></figure>
 <p>I replaced <code>listall</code> with <code>search</code> since that’s considered the ‘best’ way, and added some formatting to the output so it prints tag info rather than just the filename.</p>
+<p>This big blog of symbols isn’t very friendly on the eyes though. Moving somethings into functions</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="title">pick_songs</span></span>() &#123;</div><div class="line">  mpc search <span class="_">-f</span> <span class="string">'[%artist% - [%album% - ][%track% - ][%title%]]|%file%'</span> filename <span class="string">''</span> | fzf -m</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="title">add_songs</span></span>() &#123;</div><div class="line">  <span class="built_in">read</span> -t0 || <span class="built_in">return</span> 1</div><div class="line">  <span class="built_in">mapfile</span> -t songs &lt; &lt;(tee | mpc -q add)</div><div class="line">  <span class="keyword">if</span> [[ <span class="variable">$1</span> == <span class="string">'play_now'</span> ]]; <span class="keyword">then</span></div><div class="line">    index=$(mpc playlist | wc <span class="_">-l</span>)</div><div class="line">    (( <span class="variable">$&#123;#songs[@]&#125;</span> &gt; 1 )) &amp;&amp; index=$(( index - <span class="variable">$&#123;#songs[@]&#125;</span> + 1))</div><div class="line">    mpc -q play <span class="string">"<span class="variable">$index</span>"</span></div><div class="line">  <span class="keyword">fi</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">pick_songs | add_songs play_now</div></pre></td></tr></table></figure>
 <p>The <a href="https://github.com/DanielFGray/fzf-scripts/blob/master/fzmp" target="_blank" rel="external">full script</a> I wrote is a lot more involved and adds filter by artist then by album, as well as filtering the playlist, but this was the core functionality I came up with.</p>
 <p>I hope this was as educational to you as it was fun for me to make!</p>
 
@@ -180,7 +185,7 @@ Realizing">
 
 
 
-    <a data-url="http://danielfgray.github.io/computers/fzmp/" data-id="cip1on57100055ko130rlqehf" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://danielfgray.gitlab.io/computers/fzmp/" data-id="ciywagq6i0002gsj2ex0l63jk" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -253,6 +258,7 @@ Realizing">
 
     
     </section>
+
 
                         </div>
                     </section>
@@ -348,9 +354,18 @@ Realizing">
                     <li>
                         
                         <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/Computers/">Computers</a></p>
+                            <p class="item-title"><a href="/Computers/why-gitlab/" class="title">Why GitLab</a></p>
+                            <p class="item-date"><time datetime="2017-02-06T19:28:10.528Z" itemprop="datePublished">2017-02-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/computers/">computers</a></p>
-                            <p class="item-title"><a href="/computers/vim-guide/" class="title">Learning Vim</a></p>
-                            <p class="item-date"><time datetime="2016-05-20T05:04:26.725Z" itemprop="datePublished">2016-05-20</time></p>
+                            <p class="item-title"><a href="/computers/transducers/" class="title">Transducers Demystified</a></p>
+                            <p class="item-date"><time datetime="2017-02-05T21:00:11.122Z" itemprop="datePublished">2017-02-05</time></p>
                         </div>
                     </li>
                 
@@ -358,8 +373,8 @@ Realizing">
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/music/">music</a></p>
-                            <p class="item-title"><a href="/music/rudimental-permutations/" class="title">On permutations of rudiments</a></p>
-                            <p class="item-date"><time datetime="2015-12-14T06:00:00.000Z" itemprop="datePublished">2015-12-14</time></p>
+                            <p class="item-title"><a href="/music/beginning-drums/" class="title">Beginning Drums</a></p>
+                            <p class="item-date"><time datetime="2017-02-05T14:01:04.705Z" itemprop="datePublished">2017-02-05</time></p>
                         </div>
                     </li>
                 
@@ -367,8 +382,8 @@ Realizing">
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/computers/">computers</a></p>
-                            <p class="item-title"><a href="/computers/vimrc-guide/" class="title">Vim beginner&#39;s customization guide</a></p>
-                            <p class="item-date"><time datetime="2015-08-02T05:00:00.000Z" itemprop="datePublished">2015-08-02</time></p>
+                            <p class="item-title"><a href="/computers/tmux-guide/" class="title">Tmux guide</a></p>
+                            <p class="item-date"><time datetime="2017-02-05T13:25:53.871Z" itemprop="datePublished">2017-02-05</time></p>
                         </div>
                     </li>
                 
@@ -376,17 +391,8 @@ Realizing">
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/computers/">computers</a></p>
-                            <p class="item-title"><a href="/computers/fzmp/" class="title">Fuzzy searching for MPD in Bash</a></p>
-                            <p class="item-date"><time datetime="2014-11-02T05:00:00.000Z" itemprop="datePublished">2014-11-02</time></p>
-                        </div>
-                    </li>
-                
-                    <li>
-                        
-                        <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/computers/">computers</a></p>
-                            <p class="item-title"><a href="/computers/debian-backporting/" class="title">Backporting packages in Debian</a></p>
-                            <p class="item-date"><time datetime="2013-10-22T05:00:00.000Z" itemprop="datePublished">2013-10-22</time></p>
+                            <p class="item-title"><a href="/computers/vim-guide/" class="title">Learning Vim</a></p>
+                            <p class="item-date"><time datetime="2017-02-05T13:25:53.867Z" itemprop="datePublished">2017-02-05</time></p>
                         </div>
                     </li>
                 
@@ -399,7 +405,17 @@ Realizing">
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/debian/" style="font-size: 10px;">debian</a> <a href="/tags/drums/" style="font-size: 10px;">drums</a> <a href="/tags/fzf/" style="font-size: 10px;">fzf</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mpd/" style="font-size: 10px;">mpd</a> <a href="/tags/permutations/" style="font-size: 10px;">permutations</a> <a href="/tags/rudiments/" style="font-size: 10px;">rudiments</a> <a href="/tags/unfinished/" style="font-size: 10px;">unfinished</a> <a href="/tags/vim/" style="font-size: 20px;">vim</a>
+            <a href="/tags/bash/" style="font-size: 10px;">bash</a> <a href="/tags/debian/" style="font-size: 10px;">debian</a> <a href="/tags/drums/" style="font-size: 15px;">drums</a> <a href="/tags/fzf/" style="font-size: 15px;">fzf</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/gitlab/" style="font-size: 10px;">gitlab</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mpd/" style="font-size: 10px;">mpd</a> <a href="/tags/permutations/" style="font-size: 10px;">permutations</a> <a href="/tags/php/" style="font-size: 10px;">php</a> <a href="/tags/programming/" style="font-size: 15px;">programming</a> <a href="/tags/rudiments/" style="font-size: 15px;">rudiments</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/unfinished/" style="font-size: 20px;">unfinished</a> <a href="/tags/vim/" style="font-size: 15px;">vim</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">October 2013</a><span class="archive-list-count">1</span></li></ul>
         </div>
     </div>
 
@@ -419,23 +435,11 @@ Realizing">
                 <h1 class="logo-wrap">
                     <a href="/" class="logo"></a>
                 </h1>
-                <p>&copy; 2016 DanielFGray</p>
-                <!-- <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p> -->
+                <p>&copy; 2017 DanielFGray</p>
             </div>
         </div>
     </div>
 </footer>
-
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-77929154-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
 
         
     
@@ -443,7 +447,7 @@ Realizing">
     var disqus_shortname = 'danielfgraygithubio';
     
     
-    var disqus_url = 'http://danielfgray.github.io/computers/fzmp/';
+    var disqus_url = 'http://danielfgray.gitlab.io/computers/fzmp/';
     
     (function() {
     var dsq = document.createElement('script');
@@ -456,13 +460,7 @@ Realizing">
 
 
 
-    
-        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
-    
 
-    
-        <script src="/vendor/scrollLoading/jquery.scrollLoading.js"></script>
-        <script src="/vendor/scrollLoading/main.js"></script>
     
 
 
